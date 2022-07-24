@@ -51,6 +51,12 @@ export default {
   methods: {
     registerUser() {
       this.saving = true;
+      const user = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email,
+      };
+      this.$store.commit('setUser', user);
     },
     cancel() {
       this.router.navigate(['/']);
