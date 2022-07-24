@@ -49,14 +49,23 @@ export default {
     };
   },
   methods: {
-    registerUser() {
+    async registerUser() {
+      this.registerError = false;
       this.saving = true;
       const user = {
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
+        password: this.password,
       };
-      this.$store.commit('setUser', user);
+      try {
+        await this.$store.dispatch('registerUser', user);
+        await this.$router.push('/products');
+      } catch (e) {
+        console.log(e);
+        this.registerError = true;
+        this.saving = false;
+      }
     },
     cancel() {
       this.router.navigate(['/']);

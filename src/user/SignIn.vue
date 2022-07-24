@@ -34,8 +34,19 @@ export default {
     };
   },
   methods: {
-    signIn() {
-      // sign in user
+    async signIn() {
+      this.signInError = false;
+      const userLogin = {
+        email: this.email,
+        password: this.password,
+      };
+      try {
+        await this.$store.dispatch('signIn', userLogin);
+        await this.$router.push('/products');
+      } catch (e) {
+        console.log(e);
+        this.signInError = true;
+      }
     },
     cancel() {
       this.router.navigate(['/']);

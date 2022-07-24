@@ -27,6 +27,14 @@ const store = createStore({
       const response = await axios.get('/api/products');
       commit('setProducts', response.data);
     },
+    async registerUser({ commit }, user) {
+      return axios.post('/api/register', user)
+        .then((response) => commit('setUser', response.data));
+    },
+    async signIn({ commit }, userLogin) {
+      return axios.post('/api/sign-in', userLogin)
+        .then((response) => commit('setUser', response.data));
+    },
   },
 });
 
