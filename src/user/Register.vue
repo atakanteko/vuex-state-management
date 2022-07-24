@@ -59,7 +59,7 @@ export default {
         password: this.password,
       };
       try {
-        await this.$store.dispatch('registerUser', user);
+        await this.$store.dispatch('users/registerUser', user);
         await this.$router.push('/products');
       } catch (e) {
         console.log(e);

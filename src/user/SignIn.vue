@@ -41,7 +41,7 @@ export default {
         password: this.password,
       };
       try {
-        await this.$store.dispatch('signIn', userLogin);
+        await this.$store.dispatch('users/signIn', userLogin);
         await this.$router.push('/products');
       } catch (e) {
         console.log(e);
