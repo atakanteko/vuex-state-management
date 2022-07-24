@@ -1,11 +1,9 @@
 import { createStore } from 'vuex';
-import filterProducts from '@/products/filter-products';
 
 const store = createStore({
   state() {
     return {
       user: null,
-      productFilter: null,
       products: [
         {
           id: '24ab7b14-f935-44c1-b91b-8598123ea54a',
@@ -50,13 +48,11 @@ const store = createStore({
     setUser(state, payload) {
       state.user = payload;
     },
-    setProductFilter(state, payload) {
-      state.productFilter = payload;
-    },
   },
   getters: {
-    filteredProducts(state) {
-      return filterProducts(state.productFilter, state.products);
+    filteredProducts: (state) => (filter) => {
+      if (!filter) return state.products;
+      return state.products.filter((p) => p.category === filter);
     },
   },
 });

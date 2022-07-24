@@ -36,12 +36,12 @@ export default {
   },
   methods: {
     setFilter(filter) {
-      this.$store.commit('setProductFilter', filter);
+      this.filter = filter;
     },
   },
   computed: {
     visibleProducts() {
-      return this.$store.getters.filteredProducts;
+      return this.$store.getters.filteredProducts(this.filter);
     },
   },
 };
